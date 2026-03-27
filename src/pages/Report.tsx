@@ -124,10 +124,7 @@ export default function Report({ user }: ReportProps) {
   };
 
   const handleSubmit = async () => {
-    if (!user) {
-      alert('Please sign in to report a project.');
-      return;
-    }
+    // Authentication check removed so anyone can report
 
     setLoading(true);
     try {
@@ -160,7 +157,7 @@ export default function Report({ user }: ReportProps) {
         diagnosis: aiAnalysis.diagnosis,
         revivalPlan: aiAnalysis.revivalPlan,
         impactMetrics: aiAnalysis.impactMetrics,
-        authorUid: user.uid,
+        authorUid: user?.uid || 'anonymous',
         volunteerUids: [],
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
@@ -181,19 +178,7 @@ export default function Report({ user }: ReportProps) {
     }
   };
 
-  if (!user) {
-    return (
-      <div className="min-h-[60vh] flex flex-col items-center justify-center text-center space-y-6">
-        <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center text-slate-400">
-          <Ghost className="w-10 h-10" />
-        </div>
-        <div className="space-y-2">
-          <h2 className="text-2xl font-bold text-slate-900">Sign in to Report</h2>
-          <p className="text-slate-500 max-w-md">You need to be logged in to report a failed environmental project and get an AI recovery plan.</p>
-        </div>
-      </div>
-    );
-  }
+  // Login prompt removed so the form always displays
 
   return (
     <div className="max-w-2xl mx-auto py-12">

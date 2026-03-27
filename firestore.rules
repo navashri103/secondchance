@@ -106,9 +106,7 @@ service cloud.firestore {
 
     match /projects/{projectId} {
       allow read: if true; // Publicly readable for the "Graveyard" map
-      allow create: if isAuthenticated() &&
-                      isValidProject(request.resource.data) &&
-                      request.resource.data.authorUid == request.auth.uid;
+      allow create: if isValidProject(request.resource.data);
       allow update: if isAuthenticated() &&
                       isValidProject(request.resource.data) &&
                       (isOwner(resource.data.authorUid) || isAdmin() ||
