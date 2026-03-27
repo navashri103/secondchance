@@ -1,0 +1,60 @@
+{
+  "entities": {
+    "Project": {
+      "title": "Project",
+      "description": "An environmental project that was abandoned and needs revival.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Name of the project" },
+        "locationName": { "type": "string", "description": "Human-readable location" },
+        "lat": { "type": "number", "description": "Latitude" },
+        "lng": { "type": "number", "description": "Longitude" },
+        "description": { "type": "string", "description": "Detailed description of the project" },
+        "status": { "type": "string", "enum": ["abandoned", "reviving", "active"], "description": "Current status of the project" },
+        "category": { "type": "string", "enum": ["Water", "Land", "Air", "Wildlife", "Urban"], "description": "Project category" },
+        "failureReason": { "type": "string", "description": "Why the project stopped" },
+        "resourceGap": { "type": "string", "description": "What resources are currently missing" },
+        "revivalScore": { "type": "number", "description": "AI-calculated revival score (0-100)" },
+        "successProbability": { "type": "number", "description": "AI-calculated success probability (0-100)" },
+        "diagnosis": { "type": "string", "description": "AI-generated failure diagnosis" },
+        "revivalPlan": { "type": "array", "items": { "type": "string" }, "description": "AI-generated step-by-step checklist" },
+        "impactMetrics": {
+          "type": "object",
+          "properties": {
+            "wasteRemoved": { "type": "number", "description": "Estimated tons of waste removed" },
+            "treesRestored": { "type": "number", "description": "Estimated number of trees restored" },
+            "waterQualityImprovement": { "type": "number", "description": "Estimated % improvement in water quality" }
+          }
+        },
+        "authorUid": { "type": "string", "description": "UID of the user who reported the project" },
+        "volunteerUids": { "type": "array", "items": { "type": "string" }, "description": "List of user UIDs who joined the project" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "locationName", "lat", "lng", "description", "status", "category", "failureReason", "authorUid"]
+    },
+    "User": {
+      "title": "User",
+      "description": "User profile information.",
+      "type": "object",
+      "properties": {
+        "displayName": { "type": "string" },
+        "email": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "role": { "type": "string", "enum": ["user", "admin"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["displayName", "email", "role"]
+    }
+  },
+  "firestore": {
+    "projects": {
+      "schema": "Project",
+      "description": "Collection of environmental projects."
+    },
+    "users": {
+      "schema": "User",
+      "description": "Collection of user profiles."
+    }
+  }
+}

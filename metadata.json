@@ -1,0 +1,5 @@
+{
+  "name": "ReviveEarth AI",
+  "description": "An environmental project resuscitation platform that helps NGOs revive abandoned or failed projects using AI-driven failure analysis and recovery planning.",
+  "requestFramePermissions": ["geolocation"]
+}

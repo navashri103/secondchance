@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --color-bg: #f8fffb;
+  --color-ink: #0f2a1f;
+  --color-accent: #16a34a;
+  --color-accent-hover: #15803d;
+  --color-surface: #ffffff;
+  --color-line: #d1fae5;
+}
+
+@layer base {
+  body {
+    @apply bg-bg text-ink;
+  }
+
+  .leaflet-container {
+    @apply z-0;
+  }
+  
+  .custom-marker {
+    @apply flex items-center justify-center;
+  }
+}
+
+/* Fix for Leaflet popup styles to match our theme */
+.leaflet-popup-content-wrapper {
+  @apply bg-surface text-ink rounded-xl shadow-xl border border-line !p-0 overflow-hidden;
+}
+
+.leaflet-popup-content {
+  @apply !m-0;
+}
+
+.leaflet-popup-tip {
+  @apply bg-surface shadow-none border-none;
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+  color: #94a3b8 !important; 
+  padding: 8px !important;
+}
+
+.leaflet-container a.leaflet-popup-close-button:hover {
+  color: #ffffff !important;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ecfdf5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #86efac;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4ade80;
+}
